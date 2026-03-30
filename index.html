@@ -37,53 +37,30 @@
             display: inline-block;
         }
 
-        /* 물결 역할을 할 pseudo-elements 설정 */
         .water-ripple-wrapper::before,
         .water-ripple-wrapper::after {
             content: "";
             position: absolute;
             top: 50%; left: 50%;
             border-radius: 50%;
-            background: rgba(147, 197, 253, 0.4); /* 연한 파란색 물결 */
+            background: rgba(147, 197, 253, 0.4); 
             border: 2px solid rgba(147, 197, 253, 0.6); 
             opacity: 0;
             transform: translate(-50%, -50%) scale(0.1);
             pointer-events: none;
         }
 
-        /* 첫 번째 물결 애니메이션 */
-        .water-ripple-wrapper::before {
-            animation: waterRipple 4s linear infinite;
-        }
+        .water-ripple-wrapper::before { animation: waterRipple 4s linear infinite; }
+        .water-ripple-wrapper::after { animation: waterRipple 4s linear infinite 2s; }
 
-        /* 두 번째 물결 애니메이션 (지연 실행) */
-        .water-ripple-wrapper::after {
-            animation: waterRipple 4s linear infinite 2s; /* 50% 지연 */
-        }
-
-        /* 물결이 중앙에서 퍼져나가는 애니메이션 */
         @keyframes waterRipple {
-            0% {
-                width: 10px; height: 10px;
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(0.1);
-            }
-            5% {
-                opacity: 0.8;
-            }
-            100% {
-                width: 500px; height: 500px; /* 이미지 전체를 덮고 남을 크기 */
-                opacity: 0;
-                transform: translate(-50%, -50%) scale(1.5); /* 최종 크기 */
-            }
+            0% { width: 10px; height: 10px; opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
+            5% { opacity: 0.8; }
+            100% { width: 500px; height: 500px; opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
         }
         
-        /* 마우스 오버 시 물결 효과 멈추기 및 숨기기 */
         .group:hover .water-ripple-wrapper::before,
-        .group:hover .water-ripple-wrapper::after {
-            animation: none;
-            opacity: 0;
-        }
+        .group:hover .water-ripple-wrapper::after { animation: none; opacity: 0; }
 
         /* 대시보드 카드 */
         .image-card {
@@ -133,7 +110,6 @@
             color: rgba(255, 255, 255, 0.03); z-index: 0; user-select: none; line-height: 1;
         }
         
-        /* 추가 섹션들 기본 스타일 */
         .glass-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .journey-card { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 1.5rem; display: flex; align-items: center; padding: 1.2rem; gap: 1.2rem; }
         .journey-img-box { width: 80px; height: 80px; border-radius: 0.8rem; overflow: hidden; flex-shrink: 0; }
@@ -313,21 +289,57 @@
     <script>
         /* --- [JavaScript 기능 구역] --- */
         const myData = [
-            { category: "FAITH", title: "신앙의 여정", status: "현재 필사 진행 상황", progress: "4 / 66", percent: 6, unit: "권 필사", image: "image_111ce.jpg", desc: "성경 필사를 통해 매일 마음의 평화를 쌓아가는 기록입니다." },
-            { category: "KNOWLEDGE", title: "지식의 여정", status: "코딩 습관 형성", progress: "5 / 100", percent: 5, unit: "시간 코딩", image: "image_222ce.jpg", desc: "코딩과 최신 기술 습관을 익혀 엔지니어 역량을 강화합니다." },
-            { category: "LEADERSHIP", title: "리더십의 여정", status: "강연 및 프레젠테이션", progress: "1 / 20", percent: 5, unit: "회 강연", image: "image_333ce.jpg", desc: "청중 앞에서 지식을 공유하고 영향력을 펼치는 리더가 되어갑니다." },
-            { category: "CHALLENGE", title: "도전의 여정", status: "현재 자격증 도전", progress: "0 / 2", percent: 0, unit: "개 자격증", image: "image_444ce.jpg", desc: "엔지니어를 향한 새로운 도전입니다." },
+            { category: "FAITH", title: "신앙의 여정", status: "현재 필사 진행 상황", progress: "24 / 66", percent: 36, unit: "권 필사", image: "image_111ce.jpg", desc: "성경 필사를 통해 매일 마음의 평화를 쌓아가는 기록입니다." },
+            { category: "KNOWLEDGE", title: "지식의 여정", status: "코딩 습관 형성", progress: "67 / 100", percent: 67, unit: "시간 코딩", image: "image_222ce.jpg", desc: "코딩과 최신 기술 습관을 익혀 엔지니어 역량을 강화합니다." },
+            { category: "LEADERSHIP", title: "리더십의 여정", status: "강연 및 프레젠테이션", progress: "12 / 20", percent: 60, unit: "회 강연", image: "image_333ce.jpg", desc: "청중 앞에서 지식을 공유하고 영향력을 펼치는 리더가 되어갑니다." },
+            { category: "CHALLENGE", title: "도전의 여정", status: "현재 자격증 도전", progress: "1 / 2", percent: 50, unit: "개 자격증", image: "image_444ce.jpg", desc: "가스기능장 완수, 이제 전기기사를 향한 새로운 도전입니다." },
             { category: "PASSION", title: "열정의 여정", status: "현재 야구 구속", progress: "95 / 110", percent: 86, unit: "km/h 구속", image: "image_555ce.jpg", desc: "나이는 숫자에 불과합니다. 110km/h를 향한 뜨거운 열정." }
         ];
 
-        // 팝업창 전용 데이터
         const modalData = {
-            "FAITH": { num: "01", title: "The Journey of Faith", desc: "Writing the Bible by hand is a meditative process that grounds my spirit. It teaches me patience, precision, and the importance of internalizing wisdom word by word. This journey is the foundation of my mental resilience.", stat1Val: "Book of Numbers", stat1Lbl: "CURRENT BOOK", stat2Val: "28%", stat2Lbl: "COMPLETION", img: "image_111ce.jpg", reverse: false },
-            "KNOWLEDGE": { num: "02", title: "The Journey of Knowledge", desc: "Reading 100 books is not just about accumulating information, but about expanding my worldview. From engineering manuals to philosophy, every book adds a new tool to my mental toolkit.", stat1Val: "5", stat1Lbl: "BOOKS READ", stat2Val: "KR / EN", stat2Lbl: "LANGUAGES", img: "image_222ce.jpg", reverse: true },
-            "LEADERSHIP": { num: "03", title: "The Journey of Leadership", desc: "True leadership is not about being in charge, but about taking care of those in your charge. Through continuous mentoring and sharing experiences, I aim to cultivate a culture of growth and inspire the next generation of engineers.", stat1Val: "12 / 20", stat1Lbl: "MENTEES", stat2Val: "15+", stat2Lbl: "PROJECTS LED", img: "image_333ce.jpg", reverse: false },
-            "CHALLENGE": { num: "04", title: "The Journey of Challenge", desc: "Obtaining the Gas Master Craftsman and Electrical Engineer certifications proves that technical mastery has no age limit. It is about staying relevant and sharp in a rapidly evolving industrial landscape.", stat1Val: "In Progress", stat1Lbl: "STATUS", stat2Val: "Dec 2026", stat2Lbl: "TARGET DATE", img: "image_444ce.jpg", reverse: false },
-            "PASSION": { num: "05", title: "The Journey of Passion", desc: "Pitching a baseball at 110km/h requires physical discipline and perfect mechanics. It reminds me that the body, like the mind, can always be trained to perform better.", stat1Val: "95 km/h", stat1Lbl: "CURRENT SPEED", stat2Val: "110 km/h", stat2Lbl: "TARGET SPEED", img: "image_555ce.jpg", reverse: true }
+            "FAITH": { num: "01", title: "The Journey of Faith", desc: "Writing the Bible by hand is a meditative process that grounds my spirit.", stat1Val: "Jeremiah", stat1Lbl: "CURRENT BOOK", stat2Val: "36%", stat2Lbl: "COMPLETION", img: "image_111ce.jpg", reverse: false },
+            "KNOWLEDGE": { num: "02", title: "The Journey of Knowledge", desc: "Reading 100 books is not just about accumulating information, but about expanding my worldview.", stat1Val: "67", stat1Lbl: "BOOKS READ", stat2Val: "KR / EN", stat2Lbl: "LANGUAGES", img: "image_222ce.jpg", reverse: true },
+            "LEADERSHIP": { num: "03", title: "The Journey of Leadership", desc: "True leadership is not about being in charge, but about taking care of those in your charge.", stat1Val: "12 / 20", stat1Lbl: "MENTEES", stat2Val: "15+", stat2Lbl: "PROJECTS LED", img: "image_333ce.jpg", reverse: false },
+            "CHALLENGE": { num: "04", title: "The Journey of Challenge", desc: "Obtaining the Gas Master Craftsman and Electrical Engineer certifications proves that technical mastery has no age limit.", stat1Val: "In Progress", stat1Lbl: "STATUS", stat2Val: "Dec 2025", stat2Lbl: "TARGET DATE", img: "image_444ce.jpg", reverse: false },
+            "PASSION": { num: "05", title: "The Journey of Passion", desc: "Pitching a baseball at 110km/h requires physical discipline and perfect mechanics.", stat1Val: "95 km/h", stat1Lbl: "CURRENT SPEED", stat2Val: "110 km/h", stat2Lbl: "TARGET SPEED", img: "image_555ce.jpg", reverse: true }
         };
+
+        // 🌟 창우님의 고유 구글 시트 ID가 입력된 곳입니다! 🌟
+        const SPREADSHEET_ID = '1ipu4Xoh2zv8ZCajsfSaxgvQXc4v3xZGfpX9TAL-3Tdg'; 
+
+        async function fetchGoogleSheetAndInit() {
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv`;
+                const response = await fetch(url);
+                const csvText = await response.text();
+
+                const rows = csvText.split(/\r?\n/).slice(1); 
+                
+                rows.forEach(row => {
+                    const cols = row.split(',').map(col => col.replace(/(^"|"$)/g, '').trim());
+                    
+                    if(cols.length >= 3) {
+                        const sheetCategory = cols[0];
+                        const sheetProgress = cols[1];
+                        const sheetPercent = parseInt(cols[2], 10);
+
+                        const targetItem = myData.find(item => item.category === sheetCategory);
+                        if(targetItem && !isNaN(sheetPercent)) {
+                            targetItem.progress = sheetProgress;
+                            targetItem.percent = sheetPercent;
+                            if(modalData[sheetCategory] && sheetCategory === 'FAITH') modalData[sheetCategory].stat2Val = sheetPercent + "%";
+                        }
+                    }
+                });
+                
+                console.log("🍒 구글 시트 동기화 완료!");
+                initWebsite();
+
+            } catch (error) {
+                console.error('구글 시트 연동 실패. 기본 데이터로 렌더링합니다.', error);
+                initWebsite();
+            }
+        }
 
         function initWebsite() {
             const dashGrid = document.getElementById('dashboard-grid');
@@ -404,7 +416,7 @@
             if (forceClose || event.target === overlay) { overlay.classList.remove('active'); }
         }
 
-        document.addEventListener('DOMContentLoaded', initWebsite);
+        document.addEventListener('DOMContentLoaded', fetchGoogleSheetAndInit);
     </script>
 </body>
 </html>
