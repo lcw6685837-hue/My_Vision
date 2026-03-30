@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이창우의 위대한 여정 - Great Journey Pro V6.0</title>
+    <title>이창우의 위대한 여정 - Great Journey Pro V7.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -31,36 +31,21 @@
         .animate-gradient { background-size: 200% auto; animation: shine 4s linear infinite; }
         @keyframes shine { to { background-position: 200% center; } }
 
-        /* --- [프로필 사진 물결(Ripple) 효과] --- */
-        .water-ripple-wrapper {
-            position: relative;
-            display: inline-block;
+        /* 프로필 사진 물결(Ripple) 효과 */
+        .water-ripple-wrapper { position: relative; display: inline-block; }
+        .water-ripple-wrapper::before, .water-ripple-wrapper::after {
+            content: ""; position: absolute; top: 50%; left: 50%; border-radius: 50%;
+            background: rgba(147, 197, 253, 0.4); border: 2px solid rgba(147, 197, 253, 0.6); 
+            opacity: 0; transform: translate(-50%, -50%) scale(0.1); pointer-events: none;
         }
-
-        .water-ripple-wrapper::before,
-        .water-ripple-wrapper::after {
-            content: "";
-            position: absolute;
-            top: 50%; left: 50%;
-            border-radius: 50%;
-            background: rgba(147, 197, 253, 0.4); 
-            border: 2px solid rgba(147, 197, 253, 0.6); 
-            opacity: 0;
-            transform: translate(-50%, -50%) scale(0.1);
-            pointer-events: none;
-        }
-
         .water-ripple-wrapper::before { animation: waterRipple 4s linear infinite; }
         .water-ripple-wrapper::after { animation: waterRipple 4s linear infinite 2s; }
-
         @keyframes waterRipple {
             0% { width: 10px; height: 10px; opacity: 0; transform: translate(-50%, -50%) scale(0.1); }
             5% { opacity: 0.8; }
             100% { width: 500px; height: 500px; opacity: 0; transform: translate(-50%, -50%) scale(1.5); }
         }
-        
-        .group:hover .water-ripple-wrapper::before,
-        .group:hover .water-ripple-wrapper::after { animation: none; opacity: 0; }
+        .group:hover .water-ripple-wrapper::before, .group:hover .water-ripple-wrapper::after { animation: none; opacity: 0; }
 
         /* 대시보드 카드 */
         .image-card {
@@ -99,16 +84,9 @@
         }
         #modal-overlay.active .modal-content { transform: scale(1) translateY(0); }
         
-        .modal-close-btn {
-            position: absolute; top: 1.5rem; right: 1.5rem; color: #64748b;
-            font-size: 1.5rem; cursor: pointer; transition: color 0.2s; z-index: 50;
-        }
+        .modal-close-btn { position: absolute; top: 1.5rem; right: 1.5rem; color: #64748b; font-size: 1.5rem; cursor: pointer; transition: color 0.2s; z-index: 50; }
         .modal-close-btn:hover { color: #ffffff; }
-
-        .modal-bg-number {
-            position: absolute; top: -1.5rem; font-size: 8rem; font-weight: 900;
-            color: rgba(255, 255, 255, 0.03); z-index: 0; user-select: none; line-height: 1;
-        }
+        .modal-bg-number { position: absolute; top: -1.5rem; font-size: 8rem; font-weight: 900; color: rgba(255, 255, 255, 0.03); z-index: 0; user-select: none; line-height: 1; }
         
         .glass-card { background: rgba(15, 23, 42, 0.7); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
         .journey-card { background: rgba(255, 255, 255, 0.01); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 1.5rem; display: flex; align-items: center; padding: 1.2rem; gap: 1.2rem; }
@@ -127,6 +105,7 @@
                 <a href="#about" class="hover:text-blue-400 transition">About</a>
                 <a href="#dashboard" class="hover:text-blue-400 transition">Dashboard</a>
                 <a href="#journey" class="hover:text-blue-400 transition">Journey</a>
+                <a href="#vault" class="hover:text-blue-400 transition">Vault</a>
                 <a href="#contact" class="hover:text-blue-400 transition">Contact</a>
             </div>
         </div>
@@ -187,15 +166,7 @@
                     <h2 class="text-4xl md:text-5xl font-black text-white leading-[1.15] tracking-tight">Engineer by Profession,<br><span class="text-slate-400">Dreamer by Passion.</span></h2>
                     <div class="space-y-4 text-slate-400 text-sm leading-relaxed mt-6">
                         <p>Hello, I am Chang-WOO. I believe that age is just a number when it comes to growth. With over two decades of experience in engineering, I realized that true leadership comes not just from technical expertise, but from the continuous pursuit of self-improvement.</p>
-                        <p>My "Great Journey" is a testament to this belief. Whether it's transcribing the Bible, mastering new technologies, or pitching a fastball at 50, I am constantly challenging my limits to inspire those around me.</p>
                     </div>
-                    <ul class="mt-8 space-y-3 text-sm font-medium text-slate-300">
-                        <li class="flex items-center gap-3"><i class="far fa-check-circle text-blue-500 text-lg"></i>Over 25 years of engineering experience</li>
-                        <li class="flex items-center gap-3"><i class="far fa-check-circle text-blue-500 text-lg"></i>Certified Gas Master Craftsman</li>
-                        <li class="flex items-center gap-3"><i class="far fa-check-circle text-blue-500 text-lg"></i>Electrical Engineer License Holder</li>
-                        <li class="flex items-center gap-3"><i class="far fa-check-circle text-blue-500 text-lg"></i>Successfully led 15+ large-scale projects</li>
-                        <li class="flex items-center gap-3"><i class="far fa-check-circle text-blue-500 text-lg"></i>Dedicated mentor to junior engineers</li>
-                    </ul>
                 </div>
             </div>
         </section>
@@ -207,174 +178,165 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="journey-grid"></div>
         </section>
 
+        <section id="vault" class="mb-32 pt-16">
+            <div class="mb-10 flex items-center gap-5">
+                <div class="w-14 h-14 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-center text-3xl">💡</div>
+                <div>
+                    <h2 class="text-2xl font-black text-white tracking-tight">Insight Vault</h2>
+                    <p class="text-slate-500 text-xs font-semibold tracking-wide">엔지니어 이창우의 즐겨찾기 & 영감 창고</p>
+                </div>
+                <div class="h-px flex-1 bg-white/[0.03]"></div>
+            </div>
+            <ul id="insight-bookmark-list" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <li class="text-slate-500 text-sm p-5">구글 시트를 연결하여 북마크 데이터를 불러오고 있습니다...</li>
+            </ul>
+        </section>
+
         <section id="contact" class="mb-32 pt-16">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
-                
-                <div class="space-y-8">
+            <div class="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col justify-center max-w-2xl mx-auto">
+                <h2 class="text-3xl font-black text-white mb-6 tracking-tight text-center">Let's Connect</h2>
+                <form action="https://formspree.io/f/mpqoqbvr" method="POST" class="space-y-5 relative z-10">
                     <div>
-                        <h2 class="text-4xl md:text-5xl font-black text-white mb-4 tracking-tight">Let's Connect</h2>
-                        <p class="text-slate-400 text-sm leading-relaxed">
-                            Whether you want to discuss engineering challenges, share book recommendations, or just say hello, I'm always open to new conversations.
-                        </p>
+                        <input type="text" name="name" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white outline-none focus:border-blue-500 transition" required>
                     </div>
-
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5 transition hover:bg-white/[0.04]">
-                            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
-                                <i class="far fa-envelope"></i>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Email</p>
-                                <p class="text-white font-medium text-sm">lcw6685837@gmail.com</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5 transition hover:bg-white/[0.04]">
-                            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
-                                <i class="fas fa-phone-alt"></i>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Phone</p>
-                                <p class="text-white font-medium text-sm">010-7670-6247</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-center gap-4 p-5 rounded-2xl bg-white/[0.02] border border-white/5 transition hover:bg-white/[0.04]">
-                            <div class="w-12 h-12 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 text-lg flex-shrink-0">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <p class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-1">Location</p>
-                                <p class="text-white font-medium text-sm">Seoul, South Korea</p>
-                            </div>
-                        </div>
+                    <div>
+                        <input type="email" name="email" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white outline-none focus:border-blue-500 transition" required>
                     </div>
-                </div>
-
-                <div class="glass-card p-8 md:p-10 rounded-3xl relative overflow-hidden flex flex-col justify-center">
-                    <div class="absolute -top-20 -right-20 w-64 h-64 bg-blue-500/10 blur-[80px] rounded-full z-0"></div>
-                    
-                    <form action="https://formspree.io/f/mpqoqbvr" method="POST" class="space-y-5 relative z-10">
-                        <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Name</label>
-                            <input type="text" name="name" placeholder="Your Name" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white outline-none focus:border-blue-500 focus:bg-white/10 transition" required>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Email</label>
-                            <input type="email" name="email" placeholder="your@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white outline-none focus:border-blue-500 focus:bg-white/10 transition" required>
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-bold text-slate-400 uppercase tracking-widest mb-2">Message</label>
-                            <textarea name="message" placeholder="How can I help you?" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white outline-none focus:border-blue-500 focus:bg-white/10 transition resize-none" required></textarea>
-                        </div>
-                        <button type="submit" class="w-full py-4 mt-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition shadow-[0_0_20px_rgba(37,99,235,0.3)] flex items-center justify-center gap-2">
-                            Send Message <i class="fas fa-paper-plane text-xs"></i>
-                        </button>
-                    </form>
-                </div>
-
+                    <div>
+                        <textarea name="message" placeholder="How can I help you?" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-4 text-sm text-white outline-none focus:border-blue-500 transition resize-none" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 mt-2 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-500 transition shadow-[0_0_20px_rgba(37,99,235,0.3)]">
+                        Send Message <i class="fas fa-paper-plane text-xs ml-2"></i>
+                    </button>
+                </form>
             </div>
         </section>
 
     </main>
-
-    <footer class="py-12 border-t border-white/5 text-center text-slate-600 text-[10px] font-bold tracking-widest">
-        &copy; 2026 CHANG-WOO LEE. DESIGNING A BETTER TODAY.
-    </footer>
 
     <div id="modal-overlay" onclick="closeModal(event)">
         <div class="modal-content" id="modal-content-container"></div>
     </div>
 
     <script>
-        /* --- [JavaScript 기능 구역] --- */
+        /* --- [데이터 및 구글 시트 ID 설정] --- */
+        // 1. 기존 대시보드 시트 ID
+        const DASHBOARD_SHEET_ID = '1ipu4Xoh2zv8ZCajsfSaxgvQXc4v3xZGfpX9TAL-3Tdg'; 
+        
+        // 2. 🌟 방금 새로 만든 '북마크 전용' 시트 ID를 여기에 넣어주세요! 🌟
+        const BOOKMARK_SHEET_ID = '1mhINUzxEgg5HjraEnwfcP8aRdiiXZO7i4r1B8ZIdQ1E'; 
+
         const myData = [
-            { category: "FAITH", title: "신앙의 여정", status: "현재 필사 진행 상황", progress: "4 / 66", percent: 5, unit: "권 필사", image: "image_111ce.jpg", desc: "Cultivating my faith through daily one-on-one time with God and scripture transcription." },
-            { category: "KNOWLEDGE", title: "지식의 여정", status: "코딩 습관 형성", progress: "10 / 100", percent: 10, unit: "독서, 코딩", image: "image_222ce.jpg", desc: "Continuously expanding my expertise as a multidisciplinary engineer through reading, coding, and analyzing the latest tech trends." },
-            { category: "LEADERSHIP", title: "리더십의 여정", status: "강연 및 프레젠테이션", progress: "1 / 20", percent: 5, unit: "회 강연", image: "image_333ce.jpg", desc: "Growing as a leader who shares insights and makes a positive impact on colleagues and audiences alike." },
-            { category: "CHALLENGE", title: "도전의 여정", status: "현재 자격증 도전", progress: "0 / 2", percent: 0, unit: "개 자격증", image: "image_444ce.jpg", desc: "Actively pursuing advanced professional certifications in the gas and electrical engineering fields." },
-            { category: "PASSION", title: "열정의 여정", status: "현재 야구 구속", progress: "95 / 110", percent: 86, unit: "km/h 구속", image: "image_555ce.jpg", desc: "Proving that age is just a number by fueling my passion to reach a pitching velocity of 110 km/h (68 mph)." }
+            { category: "FAITH", title: "신앙의 여정", status: "현재 필사 진행 상황", progress: "24 / 66", percent: 36, unit: "권 필사", image: "image_111ce.jpg", desc: "성경 필사를 통해 매일 마음의 평화를 쌓아가는 기록입니다." },
+            { category: "KNOWLEDGE", title: "지식의 여정", status: "코딩 습관 형성", progress: "67 / 100", percent: 67, unit: "시간 코딩", image: "image_222ce.jpg", desc: "코딩과 최신 기술 습관을 익혀 엔지니어 역량을 강화합니다." },
+            { category: "LEADERSHIP", title: "리더십의 여정", status: "강연 및 프레젠테이션", progress: "12 / 20", percent: 60, unit: "회 강연", image: "image_333ce.jpg", desc: "청중 앞에서 지식을 공유하고 영향력을 펼치는 리더가 되어갑니다." },
+            { category: "CHALLENGE", title: "도전의 여정", status: "현재 자격증 도전", progress: "1 / 2", percent: 50, unit: "개 자격증", image: "image_444ce.jpg", desc: "가스기능장 완수, 이제 전기기사를 향한 새로운 도전입니다." },
+            { category: "PASSION", title: "열정의 여정", status: "현재 야구 구속", progress: "95 / 110", percent: 86, unit: "km/h 구속", image: "image_555ce.jpg", desc: "나이는 숫자에 불과합니다. 110km/h를 향한 뜨거운 열정." }
         ];
 
         const modalData = {
-            "FAITH": { num: "01", title: "The Journey of Faith", desc: "Writing the Bible by hand is a meditative process that grounds my spirit.", stat1Val: "Book of Numbers", stat1Lbl: "CURRENT BOOK", stat2Val: "5%", stat2Lbl: "COMPLETION", img: "image_111ce.jpg", reverse: false },
-            "KNOWLEDGE": { num: "02", title: "The Journey of Knowledge", desc: "Reading 100 books is not just about accumulating information, but about expanding my worldview.", stat1Val: "10", stat1Lbl: "BOOKS READ", stat2Val: "KR / EN", stat2Lbl: "LANGUAGES", img: "image_222ce.jpg", reverse: true },
-            "LEADERSHIP": { num: "03", title: "The Journey of Leadership", desc: "True leadership is not about being in charge, but about taking care of those in your charge.", stat1Val: "1 / 20", stat1Lbl: "MENTEES", stat2Val: "10+", stat2Lbl: "PROJECTS LED", img: "image_333ce.jpg", reverse: false },
-            "CHALLENGE": { num: "04", title: "The Journey of Challenge", desc: "Obtaining the Gas Master Craftsman and Electrical Engineer certifications proves that technical mastery has no age limit.", stat1Val: "In Progress", stat1Lbl: "STATUS", stat2Val: "Dec 2026", stat2Lbl: "TARGET DATE", img: "image_444ce.jpg", reverse: false },
-            "PASSION": { num: "05", title: "The Journey of Passion", desc: "Pitching a baseball at 110km/h requires physical discipline and perfect mechanics.", stat1Val: "93 km/h", stat1Lbl: "CURRENT SPEED", stat2Val: "110 km/h", stat2Lbl: "TARGET SPEED", img: "image_555ce.jpg", reverse: true }
+            "FAITH": { num: "01", title: "The Journey of Faith", desc: "Writing the Bible by hand is a meditative process that grounds my spirit.", stat1Val: "Jeremiah", stat1Lbl: "CURRENT BOOK", stat2Val: "36%", stat2Lbl: "COMPLETION", img: "image_111ce.jpg", reverse: false },
+            "KNOWLEDGE": { num: "02", title: "The Journey of Knowledge", desc: "Reading 100 books is not just about accumulating information, but about expanding my worldview.", stat1Val: "67", stat1Lbl: "BOOKS READ", stat2Val: "KR / EN", stat2Lbl: "LANGUAGES", img: "image_222ce.jpg", reverse: true },
+            "LEADERSHIP": { num: "03", title: "The Journey of Leadership", desc: "True leadership is not about being in charge, but about taking care of those in your charge.", stat1Val: "12 / 20", stat1Lbl: "MENTEES", stat2Val: "15+", stat2Lbl: "PROJECTS LED", img: "image_333ce.jpg", reverse: false },
+            "CHALLENGE": { num: "04", title: "The Journey of Challenge", desc: "Obtaining the Gas Master Craftsman and Electrical Engineer certifications proves that technical mastery has no age limit.", stat1Val: "In Progress", stat1Lbl: "STATUS", stat2Val: "Dec 2025", stat2Lbl: "TARGET DATE", img: "image_444ce.jpg", reverse: false },
+            "PASSION": { num: "05", title: "The Journey of Passion", desc: "Pitching a baseball at 110km/h requires physical discipline and perfect mechanics.", stat1Val: "95 km/h", stat1Lbl: "CURRENT SPEED", stat2Val: "110 km/h", stat2Lbl: "TARGET SPEED", img: "image_555ce.jpg", reverse: true }
         };
 
-        // 🌟 창우님의 고유 구글 시트 ID가 입력된 곳입니다! 🌟
-        const SPREADSHEET_ID = '1ipu4Xoh2zv8ZCajsfSaxgvQXc4v3xZGfpX9TAL-3Tdg'; 
-
-        async function fetchGoogleSheetAndInit() {
+        // --- 1. 대시보드 구글 시트 불러오기 ---
+        async function fetchDashboardSheet() {
             try {
-                const url = `https://docs.google.com/spreadsheets/d/${SPREADSHEET_ID}/gviz/tq?tqx=out:csv`;
+                const url = `https://docs.google.com/spreadsheets/d/${DASHBOARD_SHEET_ID}/gviz/tq?tqx=out:csv`;
                 const response = await fetch(url);
                 const csvText = await response.text();
-
                 const rows = csvText.split(/\r?\n/).slice(1); 
                 
                 rows.forEach(row => {
                     const cols = row.split(',').map(col => col.replace(/(^"|"$)/g, '').trim());
-                    
                     if(cols.length >= 3) {
-                        const sheetCategory = cols[0];
-                        const sheetProgress = cols[1];
-                        const sheetPercent = parseInt(cols[2], 10);
-
-                        const targetItem = myData.find(item => item.category === sheetCategory);
-                        if(targetItem && !isNaN(sheetPercent)) {
-                            targetItem.progress = sheetProgress;
-                            targetItem.percent = sheetPercent;
-                            if(modalData[sheetCategory] && sheetCategory === 'FAITH') modalData[sheetCategory].stat2Val = sheetPercent + "%";
+                        const targetItem = myData.find(item => item.category === cols[0]);
+                        if(targetItem && !isNaN(parseInt(cols[2], 10))) {
+                            targetItem.progress = cols[1]; targetItem.percent = parseInt(cols[2], 10);
+                            if(modalData[cols[0]] && cols[0] === 'FAITH') modalData[cols[0]].stat2Val = cols[2] + "%";
                         }
                     }
                 });
-                
-                console.log("🍒 구글 시트 동기화 완료!");
-                initWebsite();
+                renderDashboard();
+            } catch (error) { console.error('대시보드 시트 연동 실패', error); renderDashboard(); }
+        }
 
-            } catch (error) {
-                console.error('구글 시트 연동 실패. 기본 데이터로 렌더링합니다.', error);
-                initWebsite();
+        // --- 2. 북마크(Insight Vault) 구글 시트 불러오기 ---
+        async function fetchBookmarkSheet() {
+            const listContainer = document.getElementById('insight-bookmark-list');
+            
+            if (BOOKMARK_SHEET_ID === '여기에_새로운_북마크_시트_ID_입력') {
+                listContainer.innerHTML = `<li class="text-blue-400 text-sm p-5 col-span-full">⚠️ 북마크 구글 시트 ID를 코드에 입력해주세요!</li>`;
+                return;
+            }
+
+            try {
+                const url = `https://docs.google.com/spreadsheets/d/${BOOKMARK_SHEET_ID}/gviz/tq?tqx=out:csv`;
+                const response = await fetch(url);
+                const csvText = await response.text();
+                const rows = csvText.split(/\r?\n/).slice(1); // 첫 줄(제목) 건너뛰기
+                
+                listContainer.innerHTML = ''; // '불러오는 중...' 메시지 삭제
+                
+                rows.forEach(row => {
+                    const cols = row.split(',').map(col => col.replace(/(^"|"$)/g, '').trim());
+                    if(cols.length >= 2) {
+                        const name = cols[0];
+                        const linkUrl = cols[1];
+                        
+                        // 파비콘 추출 마법
+                        let faviconUrl = '';
+                        try {
+                            const domain = new URL(linkUrl).hostname; 
+                            faviconUrl = `https://www.google.com/s2/favicons?domain=${domain}&sz=64`;
+                        } catch (e) {
+                            faviconUrl = `https://www.google.com/s2/favicons?domain=google.com&sz=64`;
+                        }
+                        
+                        // 새로운 북마크 카드 생성 (테크 테마 적용)
+                        const li = document.createElement('li');
+                        li.className = "bg-white/[0.01] border border-white/[0.03] p-4 rounded-2xl transition-all duration-300 hover:border-blue-500/30 hover:bg-white/[0.02] hover:-translate-y-1 hover:shadow-[0_10px_20px_rgba(0,0,0,0.3)]";
+                        li.innerHTML = `
+                            <a href="${linkUrl}" target="_blank" class="flex items-center gap-4 text-slate-200 hover:text-blue-400 transition-colors font-bold text-sm w-full">
+                                <img src="${faviconUrl}" class="w-8 h-8 rounded-lg bg-white p-1 shadow-sm" alt="logo">
+                                <span class="truncate">${name}</span>
+                            </a>
+                        `;
+                        listContainer.appendChild(li);
+                    }
+                });
+            } catch (error) { 
+                console.error('북마크 시트 연동 실패', error); 
+                listContainer.innerHTML = `<li class="text-red-400 text-sm p-5">북마크를 불러오지 못했습니다. 주소나 권한을 확인해주세요.</li>`;
             }
         }
 
-        function initWebsite() {
+        // --- 렌더링 함수들 ---
+        function renderDashboard() {
             const dashGrid = document.getElementById('dashboard-grid');
             const journeyGrid = document.getElementById('journey-grid');
-            
             dashGrid.innerHTML = myData.map(item => `
-                <div class="image-card" onclick="openModal('${item.category}')" title="클릭해서 상세보기">
+                <div class="image-card" onclick="openModal('${item.category}')">
                     <div class="image-card-img-box"><img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/300x100/0b0f1a/3b82f6'"></div>
                     <div class="flex flex-col gap-1">
                         <span class="text-[9px] font-black text-blue-400 tracking-widest">${item.category}</span>
-                        <div class="flex justify-between items-end">
-                            <h3 class="text-white font-bold text-xs">${item.title}</h3>
-                            <span class="text-lg font-black text-white">${item.percent}%</span>
-                        </div>
+                        <div class="flex justify-between items-end"><h3 class="text-white font-bold text-xs">${item.title}</h3><span class="text-lg font-black text-white">${item.percent}%</span></div>
                     </div>
-                    <div class="w-full h-1.5 bg-white/[0.03] rounded-full overflow-hidden">
-                        <div class="progress-fill" style="width: 0%" data-percent="${item.percent}%"></div>
-                    </div>
+                    <div class="w-full h-1.5 bg-white/[0.03] rounded-full overflow-hidden"><div class="progress-fill" style="width: 0%" data-percent="${item.percent}%"></div></div>
                     <p class="text-[10px] text-slate-500">${item.progress} ${item.unit}</p>
                 </div>
             `).join('');
-
             if (journeyGrid) {
                 journeyGrid.innerHTML = myData.map(item => `
                     <div class="journey-card">
                         <div class="journey-img-box"><img src="${item.image}" alt="${item.title}" onerror="this.src='https://via.placeholder.com/80x80/050810/3b82f6'"></div>
-                        <div>
-                            <span class="text-[9px] font-black text-blue-400 tracking-[0.2em] mb-1 block">${item.category}</span>
-                            <h4 class="text-sm font-bold text-white mb-1">${item.title}</h4>
-                            <p class="text-[11px] text-slate-500 leading-tight">${item.desc}</p>
-                        </div>
+                        <div><span class="text-[9px] font-black text-blue-400 tracking-[0.2em] mb-1 block">${item.category}</span><h4 class="text-sm font-bold text-white mb-1">${item.title}</h4><p class="text-[11px] text-slate-500 leading-tight">${item.desc}</p></div>
                     </div>
                 `).join('');
             }
-
             setTimeout(() => { document.querySelectorAll('.progress-fill').forEach(bar => { bar.style.width = bar.getAttribute('data-percent'); }); }, 300);
         }
 
@@ -384,7 +346,6 @@
             const textOrder = data.reverse ? 'order-2' : 'order-1';
             const imgOrder = data.reverse ? 'order-1 md:order-first' : 'order-1 md:order-last';
             const numPosition = data.reverse ? 'right: 1rem;' : 'left: -1rem;';
-
             container.innerHTML = `
                 <i class="fas fa-times modal-close-btn" onclick="closeModal(event, true)"></i>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10 items-center relative">
@@ -394,12 +355,10 @@
                         <p class="text-slate-400 text-sm leading-relaxed mb-8 relative z-10">${data.desc}</p>
                         <div class="grid grid-cols-2 gap-4 relative z-10">
                             <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 transition hover:bg-blue-500/20">
-                                <h4 class="text-blue-400 font-bold text-lg mb-1">${data.stat1Val}</h4>
-                                <span class="text-[9px] font-black tracking-widest text-slate-500 uppercase block">${data.stat1Lbl}</span>
+                                <h4 class="text-blue-400 font-bold text-lg mb-1">${data.stat1Val}</h4><span class="text-[9px] font-black tracking-widest text-slate-500 uppercase block">${data.stat1Lbl}</span>
                             </div>
                             <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 transition hover:bg-blue-500/20">
-                                <h4 class="text-blue-400 font-bold text-lg mb-1">${data.stat2Val}</h4>
-                                <span class="text-[9px] font-black tracking-widest text-slate-500 uppercase block">${data.stat2Lbl}</span>
+                                <h4 class="text-blue-400 font-bold text-lg mb-1">${data.stat2Val}</h4><span class="text-[9px] font-black tracking-widest text-slate-500 uppercase block">${data.stat2Lbl}</span>
                             </div>
                         </div>
                     </div>
@@ -416,7 +375,11 @@
             if (forceClose || event.target === overlay) { overlay.classList.remove('active'); }
         }
 
-        document.addEventListener('DOMContentLoaded', fetchGoogleSheetAndInit);
+        // 페이지가 열리면 대시보드와 북마크를 동시에 불러옵니다!
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchDashboardSheet();
+            fetchBookmarkSheet();
+        });
     </script>
 </body>
 </html>
