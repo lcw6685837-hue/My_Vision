@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitHub Explorer - 위대한 여정</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #050810; font-family: 'Inter', 'Plus Jakarta Sans', sans-serif; }
+        .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
+        
+        /* 네비게이션 및 배경 테마 (기존 홈페이지와 통일) */
+        .glass-nav { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); position: relative; }
+        .glass-nav::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(to right, transparent, #3b82f6, #10b981, #f43f5e, transparent); box-shadow: 0 1px 10px rgba(59, 130, 246, 0.5); }
+        .dynamic-logo { background: linear-gradient(to right, #ffffff, #60a5fa, #34d399, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: logoShine 4s linear infinite; }
+        @keyframes logoShine { to { background-position: 200% center; } }
+        .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.08) 1px, transparent 0); background-size: 32px 32px; z-index: -1; }
+        
+        /* 스크롤바 커스텀 */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #050810; }
+        ::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 4px; }
+    </style>
+</head>
+<body class="text-slate-200 antialiased min-h-screen flex flex-col">
+
+    <div class="circuit-bg"></div>
+
+    <nav class="fixed top-0 w-full z-50 glass-nav">
+        <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
+            <span class="text-2xl font-black tracking-tighter font-jakarta dynamic-logo flex items-center gap-2">
+                <i class="fab fa-github"></i> Chang-WOO | GitHub Finder
+            </span>
+            <div class="hidden md:flex gap-10 text-sm font-bold uppercase tracking-widest">
+                <a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
+                    <i class="fas fa-home"></i> Back to Home
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-4xl mx-auto px-6 pt-36 pb-20 w-full flex-1">
+        
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4 flex items-center justify-center gap-4">
+                <i class="fab fa-github text-blue-500"></i> GitHub User Finder
+            </h1>
+            <p class="text-slate-400 text-sm">전 세계 개발자들의 프로필과 저장소(Repository)를 검색해 보세요.</p>
+        </div>
+
+        <div class="bg-[#0f172a] p-4 rounded-2xl border border-white/10 shadow-2xl flex items-center gap-4 mb-10">
+            <i class="fas fa-search text-slate-400 ml-4 text-xl"></i>
+            <input type="text" id="search-input" placeholder="GitHub 유저 이름 입력 (예: defunkt, torvalds, lcw6685837)" 
+                   class="flex-1 bg-transparent text-white outline-none placeholder-slate-500 text-lg py-2">
+            <button id="search-btn" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl transition shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                Search
+            </button>
+        </div>
+
+        <div id="profile-container">
+            <div class="text-center py-20 opacity-50">
+                <i class="fas fa-user-astronaut text-6xl text-slate-600 mb-4 block"></i>
+                <p class="text-slate-400 text-lg">유저 이름을 검색하면 이곳에 프로필이 나타납니다.</p>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        const searchInput = document.getElementById('search-input');
+        const searchBtn = document.getElementById('search-btn');
+        const profileContainer = document.getElementById('profile-container');
+
+        // 날짜 변환 함수 (예: 2026-04-06T... -> Apr 6, 2026)
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+            return new Date(dateString).toLocaleDateString('en-US', options);
+        }
+
+        async function fetchGitHubUser() {
+            const username = searchInput.value.trim();
+            if (username === '') return;
+
+            // 로딩 표시
+            profileContainer.innerHTML = '<div class="text-center py-20"><i class="fas fa-circle-notch fa-spin text-5xl text-blue-500 mb-4"></i><p class="text-blue-400 font-bold">GitHub 서버와 통신 중입니다...</p></div>';
+
+            try {
+                // 1. 유저 정보 API 호출
+                const userRes = await fetch(`https://api.github.com/users/${username}`);
+                
+                // 유저가 없을 경우 (404 Error)
+                if (userRes.status === 404) {
+                    profileContainer.innerHTML = `
+                        <div class="bg-[#0f172a] rounded-3xl p-10 border border-rose-500/30 text-center shadow-2xl">
+                            <i class="fas fa-exclamation-triangle text-5xl text-rose-500 mb-4"></i>
+                            <h2 class="text-2xl font-bold text-white mb-2">유저를 찾을 수 없습니다!</h2>
+                            <p class="text-slate-400">오타가 없는지 확인하고 다시 검색해 주세요.</p>
+                        </div>`;
+                    return;
+                }
+
+                const user = await userRes.json();
+
+                // 2. 해당 유저의 최근 Repository API 호출 (최대 6개, 업데이트 순)
+                const repoRes = await fetch(`https://api.github.com/users/${username}/repos?sort=updated&per_page=6`);
+                const repos = await repoRes.json();
+
+                // 3. UI 렌더링 (화면 그리기)
+                renderProfile(user, repos);
+
+            } catch (error) {
+                console.error("API Error:", error);
+                profileContainer.innerHTML = '<p class="text-rose-500 font-bold text-center py-20">통신 중 오류가 발생했습니다.</p>';
+            }
+        }
+
+        function renderProfile(user, repos) {
+            // Null 값 처리 (정보가 없을 때)
+            const bio = user.bio ? user.bio : 'No bio available';
+            const location = user.location ? user.location : 'Not specified';
+            const company = user.company ? user.company : 'Not specified';
+            const blog = user.blog ? `<a href="${user.blog.startsWith('http') ? user.blog : 'https://'+user.blog}" target="_blank" class="hover:text-blue-400 transition">${user.blog}</a>` : 'Not specified';
+            const twitter = user.twitter_username ? `@${user.twitter_username}` : 'Not specified';
+
+            // 레포지토리 카드 HTML 생성
+            let repoHTML = '';
+            if (repos.length === 0) {
+                repoHTML = '<p class="text-slate-400 italic">최근 활동한 Repository가 없습니다.</p>';
+            } else {
+                repos.forEach(repo => {
+                    const desc = repo.description ? repo.description : 'No description available';
+                    const lang = repo.language ? repo.language : 'Unknown';
+                    repoHTML += `
+                        <a href="${repo.html_url}" target="_blank" class="bg-white/[0.02] p-5 rounded-2xl border border-white/5 hover:border-blue-500/50 hover:-translate-y-1 transition-all duration-300 group block">
+                            <h3 class="text-blue-400 font-bold text-lg mb-2 flex items-center gap-2 group-hover:text-blue-300">
+                                <i class="fas fa-book-bookmark"></i> ${repo.name}
+                            </h3>
+                            <p class="text-slate-400 text-sm mb-4 line-clamp-2 h-10">${desc}</p>
+                            <div class="flex items-center gap-4 text-xs font-bold text-slate-500">
+                                <span class="flex items-center gap-1"><i class="fas fa-circle text-[8px] text-emerald-400"></i> ${lang}</span>
+                                <span class="flex items-center gap-1"><i class="fas fa-star text-yellow-400"></i> ${repo.stargazers_count}</span>
+                                <span class="flex items-center gap-1"><i class="fas fa-code-branch text-blue-400"></i> ${repo.forks_count}</span>
+                            </div>
+                        </a>
+                    `;
+                });
+            }
+
+            // 최종 HTML 조합
+            profileContainer.innerHTML = `
+                <div class="bg-[#0f172a] rounded-3xl p-8 border border-white/10 shadow-2xl mb-8">
+                    <div class="flex flex-col md:flex-row gap-8 items-center md:items-start mb-8">
+                        <img src="${user.avatar_url}" alt="Profile Avatar" class="w-32 h-32 rounded-full border-4 border-[#1e293b] shadow-xl">
+                        <div class="flex-1 text-center md:text-left">
+                            <h2 class="text-3xl font-black text-white">${user.name || user.login}</h2>
+                            <p class="text-blue-400 font-bold mb-4">@${user.login}</p>
+                            <p class="text-slate-300 mb-4 max-w-lg leading-relaxed">${bio}</p>
+                            <div class="flex flex-wrap justify-center md:justify-start gap-4 text-sm text-slate-400 font-medium mb-6">
+                                <span class="flex items-center gap-2"><i class="fas fa-map-marker-alt"></i> ${location}</span>
+                                <span class="flex items-center gap-2"><i class="far fa-calendar-alt"></i> Joined ${formatDate(user.created_at)}</span>
+                            </div>
+                            <a href="${user.html_url}" target="_blank" class="inline-block bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-2.5 rounded-xl transition shadow-lg">
+                                View GitHub Profile
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-3 gap-4 mb-8">
+                        <div class="bg-white/[0.02] p-4 rounded-2xl border border-white/5 text-center">
+                            <span class="block text-2xl font-black text-white">${user.followers}</span>
+                            <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Followers</span>
+                        </div>
+                        <div class="bg-white/[0.02] p-4 rounded-2xl border border-white/5 text-center">
+                            <span class="block text-2xl font-black text-white">${user.following}</span>
+                            <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Following</span>
+                        </div>
+                        <div class="bg-white/[0.02] p-4 rounded-2xl border border-white/5 text-center">
+                            <span class="block text-2xl font-black text-white">${user.public_repos}</span>
+                            <span class="text-xs text-slate-400 font-bold uppercase tracking-wider">Repos</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-slate-300 font-medium">
+                        <div class="flex items-center gap-3"><i class="far fa-building text-slate-500 text-lg w-5"></i> ${company}</div>
+                        <div class="flex items-center gap-3"><i class="fas fa-link text-slate-500 text-lg w-5"></i> ${blog}</div>
+                        <div class="flex items-center gap-3"><i class="fab fa-twitter text-slate-500 text-lg w-5"></i> ${twitter}</div>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-2xl font-black text-white mb-6 flex items-center gap-3">
+                        <i class="fas fa-laptop-code text-blue-500"></i> Latest Repositories
+                    </h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        ${repoHTML}
+                    </div>
+                </div>
+            `;
+        }
+
+        // 이벤트 리스너 등록
+        searchBtn.addEventListener('click', fetchGitHubUser);
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') fetchGitHubUser();
+        });
+    </script>
+</body>
+</html>
