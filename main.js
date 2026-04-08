@@ -537,3 +537,42 @@ document.addEventListener("DOMContentLoaded", () => {
       "2px solid #60a5fa";
   }
 });
+// ==========================================
+// 💌 16. 뉴스레터 구독 폼 이벤트 (고급 API 통신)
+// ==========================================
+const newsletterForm = document.getElementById('newsletter-form');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async function(e) {
+        // e.preventDefault(); // 화면이 폼스프리로 넘어가는 것(새로고침) 방지!
+        
+        const successScreen = document.getElementById('nl-success');
+        const emailInput = document.getElementById('nl-email');
+        
+        // 입력된 폼 데이터 포장하기
+        const formData = new FormData(newsletterForm);
+
+        try {
+            // Formspree 우체통으로 데이터 몰래 보내기 (Fetch API)
+            const response = await fetch(newsletterForm.action, {
+                method: 'POST',
+                body: formData,
+                headers: { 'Accept': 'application/json' }
+            });
+
+            // 편지가 무사히 도착했다면?
+            if (response.ok) {
+                successScreen.classList.remove('hidden'); // 성공 팝업 띄우기!
+                
+                // 3초 뒤에 팝업 숨기고 입력칸 비우기
+                setTimeout(() => {
+                    successScreen.classList.add('hidden');
+                    emailInput.value = '';
+                }, 3000);
+            } else {
+                alert("구독 처리 중 오류가 발생했습니다. 다시 시도해 주세요.");
+            }
+        } catch (error) {
+            alert("통신 오류가 발생했습니다.");
+        }
+    });
+}
