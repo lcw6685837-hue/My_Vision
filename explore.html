@@ -3,149 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EXPLORE - 지식의 여정 (Book API)</title>
+    <title>Data Explorer - My Vision</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
-    
-    <style>
-        body { background-color: #050810; font-family: 'Inter', 'Plus Jakarta Sans', sans-serif; }
-        .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif; }
-        
-        /* 네비게이션 글래스모피즘 */
-        .glass-nav { background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(20px); box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3); position: relative; }
-        .glass-nav::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(to right, transparent, #3b82f6, #10b981, #f43f5e, transparent); box-shadow: 0 1px 10px rgba(59, 130, 246, 0.5); }
-        
-        .dynamic-logo { background: linear-gradient(to right, #ffffff, #60a5fa, #34d399, #ffffff); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: logoShine 4s linear infinite; }
-        @keyframes logoShine { to { background-position: 200% center; } }
-        
-        .circuit-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-image: radial-gradient(circle at 1px 1px, rgba(59, 130, 246, 0.08) 1px, transparent 0); background-size: 32px 32px; z-index: -1; }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="text-slate-200 antialiased overflow-x-hidden min-h-screen flex flex-col">
+<body class="text-slate-200 antialiased overflow-x-hidden bg-[#050810] min-h-screen">
 
     <div class="circuit-bg"></div>
 
     <nav class="fixed top-0 w-full z-50 glass-nav">
         <div class="max-w-7xl mx-auto px-6 h-18 flex items-center justify-between">
-            <span class="text-2xl font-black tracking-tighter font-jakarta dynamic-logo">Chang-WOO | EXPLORE</span>
-            <div class="hidden md:flex gap-10 text-sm font-bold uppercase tracking-widest">
-                <a href="index.html" class="text-slate-400 hover:text-white transition flex items-center gap-2">
-                    <i class="fas fa-home"></i> Back to Home
-                </a>
-            </div>
+            <span class="text-2xl font-black tracking-tighter font-jakarta text-white">API Lab</span>
+            <a href="index.html" class="nav-link text-slate-200 hover:text-emerald-400 font-bold uppercase tracking-widest text-sm flex items-center gap-2">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-36 pb-20 flex-1 w-full">
+    <main class="max-w-7xl mx-auto px-6 pt-36 pb-20">
         
         <div class="text-center mb-16">
             <span class="text-blue-500 font-black tracking-[0.2em] text-[10px] uppercase block mb-3">API Integration Lab</span>
-            <h1 class="text-5xl md:text-6xl font-black text-white tracking-tight mb-4 flex items-center justify-center gap-4">
-                Book Explorer <i class="fas fa-satellite-dish text-blue-500 text-4xl animate-pulse"></i>
-            </h1>
-            <p class="text-slate-400 text-base max-w-2xl mx-auto leading-relaxed">
-                위대한 여정의 100권 독서를 위한 데이터 허브입니다.<br>
-                세계 최대 오픈 도서관(Open Library) 서버와 실시간으로 통신하여 지식을 탐험하세요.
-            </p>
+            <h1 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">Data Explorer</h1>
+            <p class="text-slate-400 text-sm">외부 서버(Open Library, LoremFlickr)와 실시간으로 통신하여 지식을 탐험하세요.</p>
         </div>
 
-        <div class="max-w-3xl mx-auto mb-16 relative">
-            <div class="relative flex items-center">
-                <i class="fas fa-search absolute left-6 text-blue-500 text-xl"></i>
-                <input type="text" id="search-input" placeholder="책 제목, 저자, 키워드를 입력하세요 (예: Leadership, Steve Jobs)" 
-                       class="w-full bg-[#0f172a] border border-white/10 text-white pl-16 pr-32 py-5 rounded-2xl outline-none focus:border-blue-500 text-lg transition shadow-2xl">
-                <button id="search-btn" class="absolute right-2 bg-blue-600 hover:bg-blue-500 text-white font-bold px-6 py-3 rounded-xl transition shadow-[0_0_15px_rgba(37,99,235,0.4)]">
-                    Search
-                </button>
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
+            
+            <div class="glass-card p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-20 -left-20 w-40 h-40 bg-blue-500/20 rounded-full blur-3xl"></div>
+                
+                <div class="text-center mb-10 relative z-10">
+                    <h2 class="text-4xl font-black text-white tracking-tight mb-3">Book Explorer <i class="fas fa-satellite-dish text-blue-500"></i></h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        위대한 여정의 100권 독서를 위한 데이터 허브입니다.<br>
+                        세계 최대 오픈 도서관 서버와 통신하세요.
+                    </p>
+                </div>
+
+                <div class="relative z-10 mb-8">
+                    <i class="fas fa-search absolute left-5 top-1/2 -translate-y-1/2 text-blue-500"></i>
+                    <input type="text" id="book-search-input" placeholder="책 제목, 저자, 키워드를 입력하세요" class="w-full bg-[#0a0f1d] border border-white/10 rounded-xl pl-12 pr-24 py-4 text-sm text-white outline-none focus:border-blue-500 transition">
+                    <button id="book-search-btn" class="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-blue-600 text-white font-bold rounded-lg hover:bg-blue-500 transition">Search</button>
+                </div>
+
+                <div id="book-results" class="text-center text-slate-500 text-sm py-10 relative z-10">
+                    검색창에 키워드를 입력하고 여정을 시작하세요.
+                </div>
             </div>
-        </div>
 
-        <div id="results-container" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
-            <div class="col-span-full text-center py-20 opacity-50">
-                <i class="fas fa-books text-6xl text-slate-600 mb-4 block"></i>
-                <p class="text-slate-400 text-lg">검색창에 키워드를 입력하고 여정을 시작하세요.</p>
+            <div class="glass-card p-8 md:p-12 rounded-[2.5rem] border border-white/10 shadow-2xl relative overflow-hidden">
+                <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl"></div>
+                
+                <div class="text-center mb-10 relative z-10">
+                    <h2 class="text-4xl font-black text-white tracking-tight mb-3">Image Gallery <i class="fas fa-camera-retro text-purple-500"></i></h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        LoremFlickr API를 활용한 무한 이미지 저장소입니다.<br>
+                        원하는 키워드의 사진을 즉시 소환하세요.
+                    </p>
+                </div>
+
+                <div class="relative z-10 mb-8">
+                    <i class="fas fa-image absolute left-5 top-1/2 -translate-y-1/2 text-purple-500"></i>
+                    <input type="text" id="img-keyword" placeholder="영어 키워드 입력 (예: space, coding, ocean)" class="w-full bg-[#0a0f1d] border border-white/10 rounded-xl pl-12 pr-24 py-4 text-sm text-white outline-none focus:border-purple-500 transition">
+                    <button id="img-search-btn" class="absolute right-2 top-1/2 -translate-y-1/2 px-5 py-2 bg-purple-600 text-white font-bold rounded-lg hover:bg-purple-500 transition">Search</button>
+                </div>
+
+                <div id="img-results" class="grid grid-cols-2 gap-4 relative z-10">
+                    <p class="text-center text-slate-500 text-sm py-10 col-span-2">키워드를 입력하면 관련 이미지가 나타납니다.</p>
+                </div>
             </div>
-        </div>
 
+        </div>
     </main>
 
-    <script>
-        const searchInput = document.getElementById('search-input');
-        const searchBtn = document.getElementById('search-btn');
-        const resultsContainer = document.getElementById('results-container');
-
-        async function fetchBooks() {
-            const keyword = searchInput.value.trim();
-            if (keyword === '') {
-                alert("검색할 책 제목이나 키워드를 입력해주세요!");
-                return;
-            }
-
-            // 로딩 스피너 표시
-            resultsContainer.innerHTML = '<div class="col-span-full text-center py-20"><i class="fas fa-circle-notch fa-spin text-5xl text-blue-500 mb-4"></i><p class="text-blue-400 font-bold text-lg">세계 최대 오픈 도서관(Open Library)과 통신 중입니다...</p></div>';
-
-            try {
-                // 🌟 제한이 없는 Open Library API로 통신
-                const url = `https://openlibrary.org/search.json?q=${encodeURIComponent(keyword)}&limit=20`;
-                const response = await fetch(url);
-                
-                if (!response.ok) {
-                    throw new Error(`API 통신 에러: ${response.status}`);
-                }
-
-                const data = await response.json();
-                resultsContainer.innerHTML = '';
-
-                // 데이터가 없을 때 (docs 배열 검사)
-                if (!data.docs || data.docs.length === 0) {
-                    resultsContainer.innerHTML = '<p class="text-rose-400 font-bold col-span-full text-center py-20 text-lg">찾으시는 책이 없습니다. 다른 키워드로 검색해 보세요!</p>';
-                    return;
-                }
-
-                // 받아온 데이터 렌더링
-                data.docs.forEach(book => {
-                    // 책 표지 이미지 (Open Library 전용 이미지 서버 사용)
-                    const coverImg = book.cover_i 
-                        ? `https://covers.openlibrary.org/b/id/${book.cover_i}-M.jpg` 
-                        : 'https://via.placeholder.com/128x192.png?text=No+Cover';
-                    
-                    const title = book.title || '제목 없음';
-                    const authors = book.author_name ? book.author_name.join(', ') : '작자 미상';
-                    const bookLink = `https://openlibrary.org${book.key}`; // 상세 페이지 링크
-
-                    const card = document.createElement('div');
-                    card.className = "bg-[#0f172a] rounded-2xl overflow-hidden border border-white/10 shadow-2xl hover:-translate-y-2 hover:border-blue-500/50 hover:shadow-[0_15px_30px_rgba(37,99,235,0.2)] transition-all duration-300 flex flex-col group cursor-pointer";
-                    
-                    // 새 창 열기
-                    card.onclick = () => window.open(bookLink, '_blank');
-
-                    card.innerHTML = `
-                        <div class="h-56 w-full bg-[#050810] flex justify-center items-center overflow-hidden p-4 relative">
-                            <img src="${coverImg}" alt="책 표지" class="h-full object-contain shadow-lg group-hover:scale-105 transition-transform duration-500">
-                            <div class="absolute inset-0 bg-blue-600/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        </div>
-                        <div class="p-5 flex-1 flex flex-col border-t border-white/5">
-                            <h3 class="text-sm font-bold text-white mb-2 line-clamp-2 leading-snug group-hover:text-blue-400 transition-colors">${title}</h3>
-                            <p class="text-xs text-slate-400 mb-4 line-clamp-1"><i class="fas fa-pen-nib mr-1 text-slate-500"></i> ${authors}</p>
-                            <div class="mt-auto block w-full text-center bg-white/[0.03] text-blue-400 text-xs font-black py-2.5 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-all uppercase tracking-widest">
-                                READ MORE
-                            </div>
-                        </div>
-                    `;
-                    resultsContainer.appendChild(card);
-                });
-
-            } catch (error) {
-                console.error("Fetch Error:", error);
-                resultsContainer.innerHTML = `<p class="text-rose-500 font-bold col-span-full text-center py-20 text-lg"><i class="fas fa-exclamation-triangle mb-2 text-3xl"></i><br>서버 통신 중 오류가 발생했습니다.</p>`;
-            }
-        }
-
-        searchBtn.addEventListener('click', fetchBooks);
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') fetchBooks();
-        });
-    </script>
+    <script src="main.js"></script>
 </body>
 </html>
