@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이창우의 위대한 여정 - Great Journey Pro V8.13</title>
+    <title>이창우의 위대한 여정 - Great Journey Pro V8.12</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -24,9 +24,9 @@
                 <a href="#dashboard" class="nav-link text-slate-200 hover:text-blue-400">Dashboard</a>
                 <a href="tools.html" target="_blank" class="nav-link text-blue-400 hover:text-blue-300">Tools</a>
                 <a href="#vip" class="nav-link text-slate-200 hover:text-emerald-400">VIP</a>
-                <a href="#family" class="nav-link text-slate-200 hover:text-rose-400">Family</a>
+                <a href="#family" class="nav-link text-slate-200 hover:text-rose-400">My Family</a>
                 <a href="explore.html" target="_blank" class="nav-link text-blue-400 hover:text-blue-300">Explore</a>
-                <a href="#connect" class="nav-link text-slate-200 hover:text-purple-400">Connect</a>
+                <a href="#contact" class="nav-link text-slate-200 hover:text-emerald-400">Contact</a>
             </div>
         </div>
     </nav>
@@ -61,7 +61,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="relative flex justify-center lg:justify-start">
                     <div class="relative w-full max-w-md">
-                        <img src="image_000ce.jpg" alt="이창우 프로필" class="w-full h-[500px] object-cover rounded-[2.5rem] shadow-2xl border border-white/5">
+                        <img src="image_000ce.jpg" class="w-full h-[500px] object-cover rounded-[2.5rem] shadow-2xl border border-white/5">
                         <div class="absolute -bottom-6 -right-6 glass-card p-5 rounded-2xl shadow-2xl z-10 max-w-[200px]">
                             <p class="text-blue-400 font-bold text-sm mb-1">"Persistence"</p>
                             <p class="text-slate-400 text-[10px] leading-tight">Is the only path to greatness.</p>
@@ -176,102 +176,57 @@
             </div>
         </section>
 
-        <section id="connect" class="mb-32 pt-16 border-t border-white/5">
-            <div class="max-w-7xl mx-auto w-full">
+        <section id="contact" class="mb-32 pt-16 border-t border-white/5">
+            <div class="glass-card p-8 md:p-12 rounded-3xl relative flex flex-col justify-center max-w-3xl mx-auto mt-16 shadow-2xl border border-white/10">
+                <div class="text-center mb-10">
+                    <h2 class="text-4xl font-black text-emerald-400 mb-3 tracking-tight">Get in Touch</h2>
+                    <p class="text-slate-400 text-sm">Fill out the form below to contact us</p>
+                </div>
                 
-                <div class="text-center mb-16">
-                    <span class="text-purple-400 font-black tracking-[0.2em] text-[10px] uppercase block mb-3">Communication Hub</span>
-                    <h2 class="text-4xl md:text-5xl font-black text-white tracking-tight mb-4">Let's Connect</h2>
-                    <p class="text-slate-400 text-sm">소식을 구독하거나, 언제든지 편하게 메시지를 남겨주세요.</p>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:items-start">
+                <form action="https://formspree.io/f/mvzvbewr" method="POST" class="space-y-5">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                        <div class="relative">
+                            <i class="fas fa-user absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-lg"></i>
+                            <input type="text" name="name" placeholder="Name" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-base text-white outline-none focus:border-emerald-500 transition" required>
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-envelope absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-lg"></i>
+                            <input type="email" name="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-base text-white outline-none focus:border-emerald-500 transition" required>
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-phone-alt absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-lg"></i>
+                            <input type="tel" name="phone" placeholder="Phone (optional)" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-base text-white outline-none focus:border-emerald-500 transition">
+                        </div>
+                        <div class="relative">
+                            <i class="fas fa-tag absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-lg"></i>
+                            <input type="text" name="subject" placeholder="Subject" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-base text-white outline-none focus:border-emerald-500 transition" required>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <i class="fas fa-comment-dots absolute left-5 top-5 text-emerald-500 text-lg"></i>
+                        <textarea name="message" placeholder="Your Message" rows="5" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-base text-white outline-none focus:border-emerald-500 transition resize-none" required></textarea>
+                    </div>
                     
-                    <div class="glass-card p-10 rounded-[2.5rem] relative overflow-hidden shadow-2xl border border-white/10 group">
-                        <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/20 rounded-full blur-3xl group-hover:bg-purple-500/30 transition-all duration-500"></div>
+                    <button type="submit" class="w-full py-4 mt-4 bg-emerald-500 text-white font-bold text-lg rounded-xl hover:bg-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] transition flex justify-center items-center gap-3">
+                        Send Message <i class="fas fa-paper-plane"></i>
+                    </button>
+                </form>
 
-                        <div class="text-center mb-8 relative z-10">
-                            <div class="w-16 h-16 mx-auto bg-purple-500/10 rounded-2xl flex items-center justify-center mb-6 border border-purple-500/20">
-                                <i class="far fa-envelope-open text-3xl text-purple-400"></i>
-                            </div>
-                            <h3 class="text-3xl font-black text-white mb-3 tracking-tight">Join My Newsletter</h3>
-                            <p class="text-slate-400 text-sm leading-relaxed">
-                                위대한 여정의 최신 업데이트와<br>엔지니어링 인사이트를 메일로 받아보세요.
-                            </p>
-                        </div>
-
-                        <form id="newsletter-form" action="https://formspree.io/f/mreodqoq" method="POST" class="relative z-10 space-y-4">
-                            <div class="relative">
-                                <i class="fas fa-envelope absolute left-5 top-1/2 -translate-y-1/2 text-slate-500 text-sm"></i>
-                                <input type="email" name="email" id="nl-email" placeholder="Enter your email" required
-                                       class="w-full bg-[#0a0f1d] border border-white/10 text-white pl-12 pr-5 py-4 rounded-xl outline-none focus:border-purple-500 transition text-sm shadow-inner">
-                            </div>
-                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-bold rounded-xl hover:scale-[1.02] transition-transform shadow-[0_0_20px_rgba(147,51,234,0.4)] flex justify-center items-center gap-3">
-                                Subscribe <i class="fas fa-arrow-right text-sm"></i>
-                            </button>
-                        </form>
-
-                        <div class="mt-8 space-y-3 relative z-10 border-t border-white/10 pt-6">
-                            <div class="flex items-center gap-3 text-sm text-slate-400 font-medium">
-                                <i class="fas fa-check text-emerald-400"></i> <span>주간 인사이트 제공</span>
-                            </div>
-                            <div class="flex items-center gap-3 text-sm text-slate-400 font-medium">
-                                <i class="fas fa-check text-emerald-400"></i> <span>스팸 없음, 언제든 구독 취소 가능</span>
-                            </div>
-                        </div>
-                        
-                        <div id="nl-success" class="hidden absolute inset-0 bg-[#0f172a]/95 backdrop-blur-md flex flex-col items-center justify-center z-20">
-                            <i class="fas fa-paper-plane text-5xl text-purple-400 mb-5 animate-bounce"></i>
-                            <h4 class="text-2xl font-black text-white mb-2">Welcome Aboard!</h4>
-                            <p class="text-slate-400 text-sm text-center">성공적으로 구독되었습니다.<br>곧 첫 번째 메일로 찾아뵙겠습니다!</p>
-                        </div>
+                <div class="mt-12 pt-8 border-t border-white/10 space-y-5">
+                    <div class="flex items-center gap-5 text-slate-300 hover:text-emerald-400 transition group">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform"><i class="fas fa-map-marker-alt text-xl"></i></div>
+                        <span class="text-base font-medium">32, Yecheon 5-ro, Seosan-si, Chungcheongnam-do, Republic of Korea</span>
                     </div>
-
-                    <div class="glass-card p-8 md:p-12 rounded-[2.5rem] relative flex flex-col justify-center shadow-2xl border border-white/10">
-                        <div class="text-center mb-10">
-                            <h3 class="text-3xl font-black text-emerald-400 mb-3 tracking-tight">Get in Touch</h3>
-                            <p class="text-slate-400 text-sm">Fill out the form below to contact us</p>
-                        </div>
-                        
-                        <form action="https://formspree.io/f/mvzvbewr" method="POST" class="space-y-5">
-                            <div class="grid grid-cols-1 gap-5">
-                                <div class="relative">
-                                    <i class="fas fa-user absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-sm"></i>
-                                    <input type="text" name="name" placeholder="Name" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-sm text-white outline-none focus:border-emerald-500 transition" required>
-                                </div>
-                                <div class="relative">
-                                    <i class="fas fa-envelope absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-sm"></i>
-                                    <input type="email" name="email" placeholder="Email" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-sm text-white outline-none focus:border-emerald-500 transition" required>
-                                </div>
-                                <div class="relative">
-                                    <i class="fas fa-tag absolute left-5 top-1/2 -translate-y-1/2 text-emerald-500 text-sm"></i>
-                                    <input type="text" name="subject" placeholder="Subject" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-sm text-white outline-none focus:border-emerald-500 transition" required>
-                                </div>
-                            </div>
-                            <div class="relative">
-                                <i class="fas fa-comment-dots absolute left-5 top-5 text-emerald-500 text-sm"></i>
-                                <textarea name="message" placeholder="Your Message" rows="4" class="w-full bg-white/5 border border-white/10 rounded-xl pl-12 pr-5 py-4 text-sm text-white outline-none focus:border-emerald-500 transition resize-none" required></textarea>
-                            </div>
-                            
-                            <button type="submit" class="w-full py-4 mt-4 bg-emerald-500 text-white font-bold text-base rounded-xl hover:bg-emerald-400 shadow-[0_0_20px_rgba(16,185,129,0.3)] transition flex justify-center items-center gap-3 hover:scale-[1.02]">
-                                Send Message <i class="fas fa-paper-plane"></i>
-                            </button>
-                        </form>
-
-                        <div class="mt-8 pt-8 border-t border-white/10 space-y-4">
-                            <div class="flex items-center gap-4 text-slate-300 hover:text-emerald-400 transition group">
-                                <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform"><i class="fas fa-map-marker-alt text-sm"></i></div>
-                                <span class="text-sm font-medium">32, Yecheon 5-ro, Seosan-si, Republic of Korea</span>
-                            </div>
-                            <div class="flex items-center gap-4 text-slate-300 hover:text-emerald-400 transition group">
-                                <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform"><i class="fas fa-envelope text-sm"></i></div>
-                                <span class="text-sm font-medium">lcw6685837@gmail.com</span>
-                            </div>
-                        </div>
+                    <div class="flex items-center gap-5 text-slate-300 hover:text-emerald-400 transition group">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform"><i class="fas fa-envelope text-xl"></i></div>
+                        <span class="text-base font-medium">lcw6685837@gmail.com</span>
                     </div>
-
+                    <div class="flex items-center gap-5 text-slate-300 hover:text-emerald-400 transition group">
+                        <div class="w-12 h-12 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 group-hover:scale-110 transition-transform"><i class="fas fa-phone-alt text-xl"></i></div>
+                        <span class="text-base font-medium">+82. 10.7670.6247</span>
+                    </div>
                 </div>
-                </div>
+            </div>
         </section>
 
     </main>
